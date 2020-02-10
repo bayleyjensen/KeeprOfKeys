@@ -21,8 +21,9 @@ namespace Keepr.Repositories
 
     internal VaultKeep Create(VaultKeep newData)
     {
-      string sql = "INSERT INTO vaultkeeps (keepId, vaultId) VALUES (@KeepId, @VaultId); SELECT_LAST_INSERT_ID();";
+      string sql = @"INSERT INTO vaultkeeps (keepId, vaultId, userId) VALUES (@KeepId, @VaultId, @UserId); SELECT_LAST_INSERT_ID();";
       int id = _db.ExecuteScalar<int>(sql, newData);
+      newData.Id = id;
       return newData;
     }
 

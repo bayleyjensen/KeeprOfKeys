@@ -21,7 +21,9 @@ namespace Keepr.Services
 
     internal VaultKeep GetById(VaultKeep VaultId)
     {
-      throw new NotImplementedException();
+      var exists = _repo.Find(VaultId);
+      if (exists == null) { throw new Exception("INVALID ID"); }
+      return exists;
     }
 
     internal string Delete(VaultKeep vid)
