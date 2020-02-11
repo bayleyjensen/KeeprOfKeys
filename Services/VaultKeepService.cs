@@ -12,7 +12,7 @@ namespace Keepr.Services
     {
       _repo = vrk;
     }
-    internal string Delete(int vaultId, int keepId, string userId)
+    public string Delete(int vaultId, int keepId, string userId)
     {
       var exists = _repo.GetById(vaultId, keepId);
       if (exists == null) { throw new Exception("INVALID ID COMBO"); }
