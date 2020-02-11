@@ -11,30 +11,32 @@ namespace Keepr.Services
     {
       _repo = vrk;
     }
+    internal string Delete(int vaultId, int keepId, string userId)
+    {
+      VaultKeep exists = _repo.Find(vaultId, keepId, userId);
+      if (exists == null) { throw new Exception("INVALID ID COMBO"); }
+      else if (exists.UserId != userId) { throw new Exception("THIS AINT YOUR FOOL!"); }
+      _repo.Delete(exists.VaultId, exists.KeepId, exists.UserId);
+      return "SHE GONE";
+    }
 
-    internal void Create(VaultKeep newData)
+    internal object GetKeepsByVaultId(int id)
+    {
+      return _repo.GetKeepsByVaultId(id);
+    }
+
+    internal string Create(VaultKeep newData)
     {
       VaultKeep exists = _repo.Find(newData);
-      if (exists != null) { throw new Exception("Keep already exists"); }
-      _repo.Create(newData);
-    }
-
-    internal VaultKeep GetById(VaultKeep VaultId)
-    {
-      var exists = _repo.Find(VaultId);
-      if (exists == null) { throw new Exception("INVALID ID"); }
-      return exists;
-    }
-
-    internal string Delete(VaultKeep vid)
-    {
-      VaultKeep exists = _repo.Find(vid);
-      if (exists == null) { throw new Exception("INVALID ID COMBO"); }
-      _repo.Delete(exists.Id);
-      return "SHE GONE";
+      if (exists == null)
       {
-
+        _repo.Create(newData);
       }
+      else if (exists != null)
+      {
+        return "THIS HAS ALREADY BEEN CREATED";
+      }
+      return "successfuly created";
     }
   }
 }
