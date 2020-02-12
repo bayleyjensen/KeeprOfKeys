@@ -5,15 +5,18 @@
     </div>
     <div>
       <div class="row">
-        <div class="col-3">
-          <div class="card" style="width: 18rem;">
-            <img src class="card-img-top" />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p
-                class="card-text"
-              >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div id="keepCards">
+          <div class="col-3" v-for="keep in keeps" :key="keep.Id">
+            <div class="card" style="width: 18rem;">
+              <img :src="keep.img" class="card-img-top" />
+              <div class="card-body">
+                <h5 class="card-title">{{keep.name}}</h5>
+                <p class="card-text">{{keep.description}}</p>
+                <p
+                  class="keepStats"
+                >Keeps:{{keep.keeps}} | Shares:{{keep.shares}} | views:{{keep.views}}</p>
+              </div>
+              <button @click="deleteKeep(keep)" class="btn btn-danger">Delete</button>
             </div>
           </div>
         </div>
@@ -26,7 +29,7 @@
 export default {
   name: "home",
   mounted() {
-    this.$store.dispatch("GetPublic");
+    this.$store.dispatch("getPublicKeeps");
   },
   computed: {
     user() {
@@ -39,6 +42,9 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
+    },
+    deleteKeep(keep) {
+      this.$store.dispatch("deleteKeep", keep);
     }
   }
 };

@@ -53,5 +53,11 @@ namespace Keepr.Repositories
       string sql = "DELETE FROM keeps WHERE id = @id";
       _db.Execute(sql, new { id });
     }
+
+    internal object GetUserKeeps(string userId)
+    {
+      string sql = "SELECT * FROM keeps WHERE userId = @UserId";
+      return _db.Query<Keep>(sql, new { userId });
+    }
   }
 }
