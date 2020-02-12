@@ -16,7 +16,7 @@ namespace Keepr.Repositories
     internal VaultKeep Find(int keepId, int vaultId)
     {
       string sql = "SELECT * FROM vaultkeeps WHERE (KeepId = @keepId AND VaultId = @vaultId)";
-      return _db.QueryFirstOrDefault<VaultKeep>(sql, new { vaultId, keepId });
+      return _db.QueryFirstOrDefault<VaultKeep>(sql, new { keepId, vaultId });
     }
 
     internal VaultKeep GetById(int vaultId, int keepId)
@@ -27,7 +27,7 @@ namespace Keepr.Repositories
 
     internal VaultKeep Create(VaultKeep newData)
     {
-      string sql = @"INSERT INTO vaultkeeps (vaultId, keepId, userId) VALUES (@VaultId, @KeepId, @UserId); SELECT_LAST_INSERT_ID();";
+      string sql = @"INSERT INTO vaultkeeps (keepId, vaultId, userId) VALUES (@KeepId, @VaultId, @UserId); SELECT LAST_INSERT_ID();";
       int id = _db.ExecuteScalar<int>(sql, newData);
       newData.Id = id;
       return newData;
