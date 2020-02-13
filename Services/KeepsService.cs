@@ -21,7 +21,10 @@ namespace Keepr.Services
     {
       var exists = _repo.GetById(id);
       if (exists == null) { throw new Exception("Invalid Id"); }
+      exists.Views++;
+      _repo.Edit(exists);
       return exists;
+
     }
 
     public Keep Create(Keep newKeep)
