@@ -6,8 +6,9 @@
         <div class="col-3" v-for="userVault in userVaults" :key="userVault.Id">
           <div class="card" style="width: 18rem;">
             <div class="card-body">
-              <h5 class="card-title">{{vault.name}}</h5>
-              <p class="card-text">Vault Desc</p>
+              <h5 class="card-title">{{userVault.name}}</h5>
+              <p class="card-text">{{userVault.description}}</p>
+              <button @click="deleteVault(userVault)" class="btn btn-danger">Delete</button>
             </div>
           </div>
         </div>
@@ -21,6 +22,11 @@ export default {
   name: "vaults",
   mounted() {
     this.$store.dispatch("getUserVaults");
+  },
+  methods: {
+    deleteVault(userVault) {
+      this.$store.dispatch("deleteVault", userVault);
+    }
   },
   computed: {
     userVaults() {

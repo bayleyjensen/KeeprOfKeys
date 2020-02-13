@@ -12,9 +12,14 @@
               <div class="card-body">
                 <h5 class="card-title">{{keep.name}}</h5>
                 <p class="card-text">{{keep.description}}</p>
-                <p
-                  class="keepStats"
-                >Keeps:{{keep.keeps}} | Shares:{{keep.shares}} | views:{{keep.views}}</p>
+                <p class="keepStats">
+                  <button>Keeps</button>
+                  :{{keep.keeps}} |
+                  <button>Shares</button>
+                  :{{keep.shares}} |
+                  <button @click="viewKeep(keep)">views</button>
+                  :{{keep.views}}
+                </p>
               </div>
               <button @click="deleteKeep(keep)" class="btn btn-danger">Delete</button>
             </div>
@@ -45,6 +50,10 @@ export default {
     },
     deleteKeep(keep) {
       this.$store.dispatch("deleteKeep", keep);
+    },
+    viewKeep(keep) {
+      this.$store.dispatch("viewKeep", keep);
+      this.$router.push({ path: "/keeps" });
     }
   }
 };

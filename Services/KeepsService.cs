@@ -48,7 +48,7 @@ namespace Keepr.Services
 
     public IEnumerable<Keep> GetUserKeeps(string userId)
     {
-      throw new NotImplementedException(userId);
+      return _repo.GetUserKeeps(userId);
     }
   }
 }

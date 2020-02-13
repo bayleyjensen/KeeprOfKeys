@@ -14,7 +14,7 @@
         />
         <input type="url" name="img" placeholder="Image Url" v-model="newKeep.img" />
         <input type="checkbox" name="isPrivate" v-model="newKeep.isPrivate" />
-
+        <label for="checkbox">Private: {{newKeep.isPrivate}}</label>
         <button type="submit" class="btn btn-success">Create</button>
         <h3>Vault From</h3>
       </form>
@@ -32,7 +32,8 @@
         </form>
       </div>
     </div>
-    <h1>Private {{userKeeps}}</h1>
+    <h1>Private</h1>
+    {{userKeeps}}
   </div>
 </template>
 
@@ -58,7 +59,7 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch("GetPrivateKeeps");
+    this.$store.dispatch("getPrivateKeeps");
   },
   methods: {
     createKeep() {

@@ -54,9 +54,9 @@ namespace Keepr.Repositories
       _db.Execute(sql, new { id });
     }
 
-    internal object GetUserKeeps(string userId)
+    internal IEnumerable<Keep> GetUserKeeps(string userId)
     {
-      string sql = "SELECT * FROM keeps WHERE userId = @UserId";
+      string sql = "SELECT * FROM keeps WHERE UserId = @userId;";
       return _db.Query<Keep>(sql, new { userId });
     }
   }

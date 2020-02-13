@@ -21,17 +21,21 @@ export default new Vuex.Store({
     userKeeps: [],
     userVaults: [],
     activeVault: [],
-    vaultKeeps: []
+    vaultKeeps: [],
+    activeKeep: {}
   },
   mutations: {
     setPublicKeeps(state, payload) {
       state.publicKeeps = payload;
     },
-    setUserKeeps(state, userKeeps) {
-      state.userKeeps = userKeeps;
+    setUserKeeps(state, payload) {
+      state.userKeeps = payload;
     },
     setUserVaults(state, userVaults) {
       state.userVaults = userVaults;
+    },
+    setActiveKeep(state, payload) {
+      state.activeKeep = payload;
     }
   },
   actions: {
@@ -45,16 +49,18 @@ export default new Vuex.Store({
       let res = await api.get("keeps");
       commit("setPublicKeeps", res.data);
       console.log("COMING FROM THE STORE", this.state.publicKeeps);
+      console.log("COMING FROM THE STORE USERKEEPS", this.state.userKeeps);
     },
-    async GetPrivateKeeps({ commit, dispatch }) {
-      let res = await api.get("keeps/userKeeps");
+    async getPrivateKeeps({ commit, dispatch }) {
+      let res = await api.get("keeps/User");
       commit("setUserKeeps", res.data);
       console.log("SHHHHH DONT TELL ANYONE");
     },
     async createKeep({ commit, dispatch }, keep) {
       try {
         let res = await api.post("Keeps", keep);
-        dispatch("GetPublicKeeps");
+        dispatch("getPublicKeeps");
+        console.log(this.state.userKeeps.length);
       } catch (error) {
         console.log("THERE WAS AN ERROR IN THE STORE");
       }
@@ -70,13 +76,22 @@ export default new Vuex.Store({
     async deleteKeep({ commit, dispatch }, keep) {
       let res = await api.delete("keeps/" + keep.id);
       dispatch("getPublicKeeps");
-      // dispatch("UserKeeps");
       console.log("DELETED KEEP WOOOHOOOO!!");
     },
     async getUserVaults({ commit, dispatch }) {
       let res = await api.get("vaults");
-      commit("seUserVaults", res.data);
+      commit("setUserVaults", res.data);
       console.log("Got Vaults", this.state.userVaults);
+    },
+    async deleteVault({ commit, dispatch }, userVault) {
+      let res = await api.delete("vaults/" + userVault.id);
+      dispatch("getUserVaults");
+      console.log("DELETED VAULT WOOOHOOOO!!");
+    },
+    async viewKeep({ commit, dispatch }, keep) {
+      let res = await api.get("keeps/" + keep.id);
+      commit("setActiveKeep", res.data);
+      console.log("set active view", res.data);
     }
   }
 });
