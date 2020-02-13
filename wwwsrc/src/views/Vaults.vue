@@ -1,6 +1,6 @@
 <template>
   <div class="vaults">
-    <h1>This is the mother fucking Vault View mother fucker</h1>
+    <h1>Vaults</h1>
     <div class="row">
       <div id="keepCards">
         <div class="col-3" v-for="userVault in userVaults" :key="userVault.Id">

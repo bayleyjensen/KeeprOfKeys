@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col">
           <div class="dropdown">
-            <select name="userVault" id="options" @change="addVaultKeep($event, activeKeep.id)">
+            <select name="userVault" id="options" @change="addVaultKeep(activeKeep.id, $event)">
               Select A Vault
               <option value selected disabled>Select a Vault</option>
               <option
@@ -50,9 +50,9 @@ export default {
       var option = document.getElementById("options");
       var vaultId = option.options[option.selectedIndex].value;
       var id = parseInt(vaultId, 10);
+      this.newVaultkeep.keepId = this.activeKeep.id;
       this.newVaultkeep.vaultId = id;
       debugger;
-      this.newVaultkeep.keepId = this.activeKeep.id;
       console.log(this.newVaultkeep);
       this.$store.dispatch("addVaultKeep", this.newVaultkeep);
     }

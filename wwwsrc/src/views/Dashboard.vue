@@ -34,6 +34,8 @@
     </div>
     <h1>Private</h1>
     {{userKeeps}}
+    <h1>VaultKeeps</h1>
+    {{vaultKeeps}}
   </div>
 </template>
 
@@ -60,6 +62,7 @@ export default {
 
   mounted() {
     this.$store.dispatch("getPrivateKeeps");
+    this.$store.dispatch("getVaultKeeps");
   },
   methods: {
     createKeep() {
@@ -90,6 +93,9 @@ export default {
     },
     userKeeps() {
       return this.$store.state.userKeeps;
+    },
+    vaultKeeps() {
+      return this.$store.state.vaultKeeps;
     }
   }
 };
