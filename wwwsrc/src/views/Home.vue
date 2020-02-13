@@ -6,7 +6,7 @@
     <div>
       <div class="row">
         <div id="keepCards">
-          <div class="col-3" v-for="keep in keeps" :key="keep.Id">
+          <div class="col-3" v-for="keep in keeps" :key="keep.id" :value="keep.id">
             <div class="card" style="width: 18rem;">
               <img :src="keep.img" class="card-img-top" />
               <div class="card-body">

@@ -1,12 +1,13 @@
 <template>
   <div class="activeKeep container-fluid">
     <div class="row">
-      <div class="col">{{activeKeep}}</div>
+      <div class="col">{{activeKeep}}{{userVaults}}</div>
       <div class="row">
         <div class="col">
           <div class="dropdown">
-            <select name="vault" id="options">
+            <select name="userVault" id="options" @change="addVaultKeep($event, activeKeep.id)">
               Select A Vault
+              <option value selected disabled>Select a Vault</option>
               <option
                 v-for="userVault in userVaults"
                 :key="userVault.id"
@@ -32,7 +33,8 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("setActiveKeep");
+    this.$store.dispatch("viewKeep");
+    this.$store.dispatch("getUserVaults");
   },
   computed: {
     activeKeep() {
@@ -42,7 +44,19 @@ export default {
       return this.$store.state.userVaults;
     }
   },
-  methods: {}
+  methods: {
+    addVaultKeep() {
+      debugger;
+      var option = document.getElementById("options");
+      var vaultId = option.options[option.selectedIndex].value;
+      var id = parseInt(vaultId, 10);
+      this.newVaultkeep.vaultId = id;
+      debugger;
+      this.newVaultkeep.keepId = this.activeKeep.id;
+      console.log(this.newVaultkeep);
+      this.$store.dispatch("addVaultKeep", this.newVaultkeep);
+    }
+  }
 };
 </script>
 

@@ -89,9 +89,14 @@ export default new Vuex.Store({
       console.log("DELETED VAULT WOOOHOOOO!!");
     },
     async viewKeep({ commit, dispatch }, keep) {
+      debugger;
       let res = await api.get("keeps/" + keep.id);
       commit("setActiveKeep", res.data);
       console.log("set active view", res.data);
+    },
+    async addVaultKeep({ commit, dispatch }, vaultKeep) {
+      let res = await api.post("vaultkeep", vaultKeep);
+      console.log("FROM STORE VAULTKEEP", vaultKeep);
     }
   }
 });
