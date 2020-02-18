@@ -76,7 +76,7 @@ export default new Vuex.Store({
     async deleteKeep({ commit, dispatch }, keep) {
       let res = await api.delete("keeps/" + keep.id);
       dispatch("getPublicKeeps");
-      console.log("DELETED KEEP WOOOHOOOO!!");
+      console.log("DELETED KEEP WOOOHOOOOo!!");
     },
     async getUserVaults({ commit, dispatch }) {
       let res = await api.get("vaults");
@@ -99,7 +99,7 @@ export default new Vuex.Store({
       dispatch("getKeepsByVaultId", vaultKeep.vaultId);
       console.log("FROM STORE VAULTKEEP", vaultKeep);
     },
-    async getKeepsByVaultId({ commit, dispatch }, vaultId) {
+    async getVaultKeeps({ commit, dispatch }, vaultId) {
       let res = await api.get("vaultkeeps/" + vaultId + "/keeps");
       commit("setVaultKeeps", res.data);
       console.log("SET VAULTKEEPS", res.data);

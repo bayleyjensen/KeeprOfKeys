@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col">
           <div class="dropdown">
-            <select name="userVault" id="options" @change="addVaultKeep(activeKeep.id, $event)">
+            <select name="userVault" id="options" @change="addVaultKeep(activeKeep.id,$event)">
               Select A Vault
               <option value selected disabled>Select a Vault</option>
               <option
