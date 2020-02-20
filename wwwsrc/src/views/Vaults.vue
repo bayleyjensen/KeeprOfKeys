@@ -10,6 +10,7 @@
               <p class="card-text">{{userVault.description}}</p>
               <button @click="deleteVault(userVault)" class="btn btn-danger">Delete</button>
             </div>
+            <p>Make this look pretty no one wants to see this crap</p>
           </div>
         </div>
       </div>

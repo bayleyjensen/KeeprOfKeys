@@ -23,6 +23,7 @@
               </div>
               <button @click="deleteKeep(keep)" class="btn btn-danger">Delete</button>
             </div>
+            <p>Make this look pretty no one wants to see this crap</p>
           </div>
         </div>
       </div>
