@@ -15,10 +15,10 @@
               id="KeepOptions"
               @change="addVaultKeep(this.userVault.id,$event)"
             >
-              Select A Vault go ahead do it tomorrow
-              <option value selected disabled>Select a Keep</option>
+              <option value selected disabled>Select a Vault</option>
               <option v-for="keep in keeps" :key="keep.id" :value="keep.id">{{keep.name}}</option>
             </select>
+            <button type="button" class="btn btn-secondary" @click="viewVault(userVault)">View</button>
           </div>
         </div>
       </div>
@@ -35,6 +35,10 @@ export default {
   methods: {
     deleteVault(userVault) {
       this.$store.dispatch("deleteVault", userVault);
+    },
+    viewVault(userVault) {
+      this.$store.dispatch("viewVault", userVault);
+      this.$router.push({ path: "/ActiveVault" });
     }
   },
   computed: {
