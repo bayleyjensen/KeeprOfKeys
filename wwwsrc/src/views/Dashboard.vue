@@ -33,7 +33,7 @@
       </div>
     </div>
     <h1>Private</h1>
-    {{userKeeps}}
+    <div v-for="userKeep in userKeeps" :key="userKeep.id">{{userKeep.name}}</div>
     <h1>VaultKeeps</h1>
     {{vaultKeeps}}
   </div>

@@ -10,7 +10,15 @@
               <p class="card-text">{{userVault.description}}</p>
               <button @click="deleteVault(userVault)" class="btn btn-danger">Delete</button>
             </div>
-            <p>Make this look pretty no one wants to see this crap</p>
+            <select
+              name="selectKeep"
+              id="KeepOptions"
+              @change="addVaultKeep(this.userVault.id,$event)"
+            >
+              Select A Vault go ahead do it tomorrow
+              <option value selected disabled>Select a Keep</option>
+              <option v-for="keep in keeps" :key="keep.id" :value="keep.id">{{keep.name}}</option>
+            </select>
           </div>
         </div>
       </div>
@@ -32,6 +40,9 @@ export default {
   computed: {
     userVaults() {
       return this.$store.state.userVaults;
+    },
+    keeps() {
+      return this.$store.state.publicKeeps;
     }
   }
 };
