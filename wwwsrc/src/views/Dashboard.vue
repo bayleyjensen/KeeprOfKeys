@@ -33,7 +33,10 @@
       </div>
     </div>
     <h1>Private</h1>
-    <div v-for="userKeep in userKeeps" :key="userKeep.id">{{userKeep.name}}</div>
+    <div v-for="userKeep in userKeeps" :key="userKeep.id">
+      {{userKeep.name}}
+      <button class="btn btn-danger" @click="deleteKeep(userKeep)">Delete</button>
+    </div>
     <h1>VaultKeeps</h1>
     {{vaultKeeps}}
   </div>
@@ -85,6 +88,10 @@ export default {
         name: "",
         description: ""
       };
+    },
+    deleteKeep(userKeep) {
+      this.$store.dispatch("deleteKeep", userKeep);
+      this.$store.dispatch("getPrivateKeeps");
     }
   },
   computed: {
