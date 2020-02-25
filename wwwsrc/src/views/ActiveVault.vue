@@ -1,6 +1,8 @@
 <template>
   <div class="activeVault">
-    <div>Here is the Active Vault View (VUE)</div>
+    <div>
+      <div>Here is the Active Vault View (VUE)</div>
+    </div>
   </div>
 </template>
 
