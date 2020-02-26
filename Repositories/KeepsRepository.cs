@@ -32,7 +32,7 @@ namespace Keepr.Repositories
       string sql = @"
       UPDATE keeps
       SET
-      name = @Name
+      name = @Name, views = @Views
       WHERE id = @Id;
       ";
       _db.Execute(sql, update);
@@ -40,7 +40,7 @@ namespace Keepr.Repositories
 
     internal Keep Create(Keep newKeep)
     {
-      string sql = @"INSERT INTO keeps (name, description, userId, isPrivate) Value (@Name, @Description, @userId, @isPrivate);
+      string sql = @"INSERT INTO keeps (name, description, img, userId, isPrivate) Value (@Name, @Description, @Img, @userId, @isPrivate);
         SELECT LAST_INSERT_ID();";
       int id = _db.ExecuteScalar<int>(sql, newKeep);
       newKeep.Id = id;

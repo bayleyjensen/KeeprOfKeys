@@ -1,20 +1,20 @@
 <template>
   <div class="activeKeep container-fluid">
     <div class="row">
-      <div class="col">{{activeKeep}}{{userVaults}}</div>
-      <div class="row">
-        <div class="col">
-          <div class="dropdown">
-            <select name="userVault" id="options" @change="addVaultKeep(activeKeep.id,$event)">
-              Select A Vault go ahead do it tomorrow
-              <option value selected disabled>Select a Vault</option>
-              <option
-                v-for="userVault in userVaults"
-                :key="userVault.id"
-                :value="userVault.id"
-              >{{userVault.name}}</option>
-            </select>
-          </div>
+      <div class="card" style="width: 18rem;">
+        <img :src="activeKeep.img" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{activeKeep.name}}</h5>
+          <p class="card-text">{{activeKeep.description}}</p>
+          <select name="userVault" id="options" @change="addVaultKeep(activeKeep.id,$event)">
+            Select A Vault go ahead do it tomorrow
+            <option value selected disabled>Select a Vault</option>
+            <option
+              v-for="userVault in userVaults"
+              :key="userVault.id"
+              :value="userVault.id"
+            >{{userVault.name}}</option>
+          </select>
         </div>
       </div>
     </div>
