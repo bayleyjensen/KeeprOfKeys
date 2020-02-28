@@ -41,17 +41,6 @@ export default {
       this.$store.dispatch("viewVault", userVault);
       this.$router.push({ path: "/ActiveVault" });
     }
-    // addVaultKeep() {
-    //   debugger;
-    //   var option = document.getElementById("options");
-    //   var KeepId = option.options[option.selectedIndex].value;
-    //   var id = parseInt(keepId, 10);
-    //   this.newVaultkeep.vaultId = this.userVault.id;
-    //   this.newVaultkeep.keepId = id;
-    //   debugger;
-    //   console.log(this.newVaultkeep);
-    //   this.$store.dispatch("addVaultKeep", this.newVaultkeep);
-    // }
   },
   computed: {
     userVaults() {
