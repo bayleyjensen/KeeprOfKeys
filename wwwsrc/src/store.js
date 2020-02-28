@@ -107,9 +107,9 @@ export default new Vuex.Store({
       commit("setVaultKeeps", res.data);
       console.log("SET VAULTKEEPS", res.data);
     },
-    async viewVault({ commit, dispatch }, vault) {
+    async viewVault({ commit, dispatch }, userVault) {
       debugger;
-      let res = await api.get("vaults/" + vault.id);
+      let res = await api.get("vaults/" + userVault.id);
       commit("setActiveVault", res.data);
       console.log("Active Vault", res.data);
     }
