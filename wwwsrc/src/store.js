@@ -112,6 +112,7 @@ export default new Vuex.Store({
       let res = await api.get("vaults/" + userVault.id);
       commit("setActiveVault", res.data);
       console.log("Active Vault", res.data);
+      console.log("Active Vault", userVault);
     }
   }
 });
