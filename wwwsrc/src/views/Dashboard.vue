@@ -4,20 +4,26 @@
     <div>hello</div>
     <div class="col-12">
       <h3>Keep Form</h3>
-      <form @submit.prevent="createKeep">
-        <input type="text" name="Name" placeholder="type NAME here" v-model="newKeep.name" />
-        <input
-          type="text"
-          name="Description"
-          placeholder="type DESCRIPTION here"
-          v-model="newKeep.description"
-        />
-        <input type="url" name="img" placeholder="Image Url" v-model="newKeep.img" />
-        <input type="checkbox" name="isPrivate" v-model="newKeep.isPrivate" />
-        <label for="checkbox">Private: {{newKeep.isPrivate}}</label>
-        <button type="submit" class="btn btn-success">Create</button>
-        <h3>Vault From</h3>
-      </form>
+      <modal name="addKeepModal">
+        <form class="form" @submit.prevent="createKeep">
+          <div class="form-group">
+            <input type="text" name="Name" placeholder="type NAME here" v-model="newKeep.name" />
+            <input
+              type="text"
+              name="Description"
+              placeholder="type DESCRIPTION here"
+              v-model="newKeep.description"
+            />
+            <input type="url" name="img" placeholder="Image Url" v-model="newKeep.img" />
+            <input type="checkbox" name="isPrivate" v-model="newKeep.isPrivate" />
+            <label for="checkbox">Private: {{newKeep.isPrivate}}</label>
+            <button type="submit" class="btn btn-success">Create</button>
+          </div>
+        </form>
+      </modal>
+      <h3>Vault From</h3>
+      <button @click="hideForm" type="button" class="btn btn-danger">oops</button>
+      <button type="button" @click="showForm" class="btn btn-primary">Add</button>
       <div class="vaultForm">
         <form @submit.prevent="createVault">
           <input type="text" name="Name" placeholder="Name?" v-model="newVault.name" />
@@ -92,6 +98,12 @@ export default {
     deleteKeep(userKeep) {
       this.$store.dispatch("deleteKeep", userKeep);
       this.$store.dispatch("getPrivateKeeps");
+    },
+    showForm() {
+      this.$modal.show("addKeepModal");
+    },
+    hideForm() {
+      this.$modal.hide("addKeepModal");
     }
   },
   computed: {
